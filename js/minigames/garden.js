@@ -158,7 +158,7 @@ Diario.minijogos.jardim = (function () {
     for (let i = 0; i < total; i++) {
       vasos += ''
         + '<button type="button" class="mg-vaso" data-vaso="' + i + '" '
-        +         'aria-label="Regar planta ' + (i + 1) + '">'
+        +         'aria-label="Полить растение ' + (i + 1) + '">'
         +   '<svg class="rabisco-svg planta-svg" viewBox="0 0 120 150" aria-hidden="true">'
         +     ESTAGIOS[0]()
         +   '</svg>'

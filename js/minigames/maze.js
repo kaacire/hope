@@ -155,7 +155,7 @@ Diario.minijogos.labirinto = (function () {
 
       + '<div class="mg-labirinto-area">'
       +   '<svg viewBox="-8 -8 ' + (largura + 16) + ' ' + (altura + 16) + '" '
-      +        'aria-label="Labirinto">'
+      +        'aria-label="Лабиринт">'
       +     '<path class="mg-parede" d="' + desenharParedes(celulas, colunas, linhas) + '"/>'
       +     '<g transform="translate(' + ((colunas - 1) * TAMANHO) + ' ' + ((linhas - 1) * TAMANHO)
       +        ') scale(0.2)">' + Diario.rabiscos.interno("portao") + '</g>'
@@ -164,10 +164,10 @@ Diario.minijogos.labirinto = (function () {
       + '</div>'
 
       + '<div class="mg-direcional">'
-      +   '<button type="button" class="mg-seta-cima"     data-dir="cima"     aria-label="Cima">▲</button>'
-      +   '<button type="button" class="mg-seta-esquerda" data-dir="esquerda" aria-label="Esquerda">◀</button>'
-      +   '<button type="button" class="mg-seta-baixo"    data-dir="baixo"    aria-label="Baixo">▼</button>'
-      +   '<button type="button" class="mg-seta-direita"  data-dir="direita"  aria-label="Direita">▶</button>'
+      +   '<button type="button" class="mg-seta-cima"     data-dir="cima"     aria-label="Вверх">▲</button>'
+      +   '<button type="button" class="mg-seta-esquerda" data-dir="esquerda" aria-label="Влево">◀</button>'
+      +   '<button type="button" class="mg-seta-baixo"    data-dir="baixo"    aria-label="Вниз">▼</button>'
+      +   '<button type="button" class="mg-seta-direita"  data-dir="direita"  aria-label="Вправо">▶</button>'
       + '</div>';
 
     raiz.classList.add("mg-labirinto");

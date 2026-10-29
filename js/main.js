@@ -525,9 +525,9 @@ Diario.app = (function () {
        o jogo não trava: libera a passagem. */
     if (!modulo) {
       raiz.innerHTML =
-        '<p class="mg-instrucao">Minijogo "' +
+        '<p class="mg-instrucao">Мини-игра «' +
         passo.jogo +
-        '" não encontrado. Confira config.sequencia.minijogos.</p>';
+        '» не найдена. Проверь config.sequencia.minijogos.</p>';
 
       setTimeout(function () {
         aoVencerMinijogo(passo);

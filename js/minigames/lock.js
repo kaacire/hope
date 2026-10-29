@@ -42,10 +42,10 @@ Diario.minijogos.fechadura = (function () {
       return ''
         + '<div class="mg-disco">'
         +   '<button type="button" class="mg-seta" data-disco="' + i + '" data-passo="1" '
-        +           'aria-label="Aumentar o número ' + (i + 1) + '">▲</button>'
+        +           'aria-label="Увеличить цифру ' + (i + 1) + '">▲</button>'
         +   '<span class="mg-digito" data-digito="' + i + '">0</span>'
         +   '<button type="button" class="mg-seta" data-disco="' + i + '" data-passo="-1" '
-        +           'aria-label="Diminuir o número ' + (i + 1) + '">▼</button>'
+        +           'aria-label="Уменьшить цифру ' + (i + 1) + '">▼</button>'
         + "</div>";
     }).join("");
 

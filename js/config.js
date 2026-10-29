@@ -15,8 +15,8 @@ Diario.config = {
      1. GERAL
      ======================================================== */
 
-  titulo: "Nosso alento",
-  subtitulo: "Escolha uma porta para começar",
+  titulo: "Наша надежда",
+  subtitulo: "Выбери дверь, чтобы начать",
 
   /* Guarda o progresso no navegador (localStorage).
      Se o site for recarregado, dá para continuar de onde parou. */
@@ -105,22 +105,22 @@ Diario.config = {
      ======================================================== */
 
   textos: {
-    portaRotulo: "Abrir porta",
-    botaoContinuar: "Continuar →",
-    botaoVoltarPortas: "← portas",
+    portaRotulo: "Открыть дверь",
+    botaoContinuar: "Дальше →",
+    botaoVoltarPortas: "← двери",
 
     /* {n} = número da página atual, {total} = total de conteúdos */
-    contador: "{n} de {total}",
+    contador: "{n} из {total}",
 
-    retomarTexto: "Você deixou o alento na página {n} de {total}.",
-    botaoRetomar: "Continuar de onde parei",
-    botaoRecomecar: "Recomeçar do zero",
+    retomarTexto: "Ты остановилась на странице {n} из {total}.",
+    botaoRetomar: "Продолжить с того места, где остановилась",
+    botaoRecomecar: "Начать сначала",
 
-    fimTitulo: "Antes de você se tornar quem é hoje...",
+    fimTitulo: "Прежде чем ты стала той, кто ты сейчас...",
     fimTexto:
-      "Existiu uma menina que regava seu pequeno jardim, aprendia com a avó, observava a neve, procurava o céu nos telhados e transformava parquinhos em mundos inteiros. " +
-      "Cada lugar guardou uma pequena parte de quem você é. E cada um deles estará para sempre guardado em sua memória.",
-    botaoVoltar: "Voltar às portas",
+      "Жила-была девочка: она поливала свой маленький садик, училась у бабушки, смотрела на снег, искала небо на крышах и превращала детские площадки в целые миры. " +
+      "Каждое место сохранило маленькую частицу тебя. И каждое из них навсегда останется в твоей памяти.",
+    botaoVoltar: "Вернуться к дверям",
   },
 
   /* ========================================================
@@ -129,17 +129,17 @@ Diario.config = {
 
   minijogos: {
     labirinto: {
-      titulo: "O labirinto desenhado",
+      titulo: "Нарисованный лабиринт",
       instrucao:
-        "Encontre o caminho até a porta. " +
-        "Use as setas, o teclado ou deslize o dedo.",
+        "Найди путь к двери. " +
+        "Используй стрелки, клавиатуру или проведи пальцем.",
       colunas: 7,
       linhas: 8,
     },
 
     quebraCabeca: {
-      titulo: "Monte a lembrança",
-      instrucao: "Toque em uma peça e depois em outra para trocar de lugar.",
+      titulo: "Собери воспоминание",
+      instrucao: "Коснись одной детали, а затем другой, чтобы поменять их местами.",
 
       /* O desenho montado (nome de um desenho de js/doodles.js) */
       desenho: "flor",
@@ -150,9 +150,9 @@ Diario.config = {
     },
 
     jardim: {
-      titulo: "O jardim",
+      titulo: "Сад",
       instrucao:
-        "Segure o dedo em cada vasinho para regar. ",
+        "Удерживай палец на каждом горшочке, чтобы полить цветок.",
         
 
       /* Segundos de rega para passar de um estágio ao próximo.
@@ -165,32 +165,32 @@ Diario.config = {
       linhas: 3,
 
       /* {n} = margaridas prontas, {total} = quantidade de vasos */
-      contador: "{n} de {total} floridas",
-      mensagemVitoria: "O jardim floresceu!",
+      contador: "Расцвело: {n} из {total}",
+      mensagemVitoria: "Сад расцвёл!",
     },
 
     /* (Opcional) Minijogo da fechadura: não está na sequência
        por padrão. Para usar, coloque "fechadura" em
        sequencia.minijogos. */
     fechadura: {
-      titulo: "A fechadura",
-      instrucao: "Gire os discos para descobrir a combinação.",
+      titulo: "Замок",
+      instrucao: "Вращай диски, чтобы угадать комбинацию.",
 
       /* Uma pista para cada dígito do código, na ordem.
          TROQUE por pistas que só vocês dois entendam. */
       pistas: [
-        "1º número: quantos dedos tem uma mão, menos quatro.",
-        "2º número: quantos lados tem um triângulo.",
-        "3º número: quantos dedos tem uma mão.",
+        "1-я цифра: сколько пальцев на одной руке, минус четыре.",
+        "2-я цифра: сколько сторон у треугольника.",
+        "3-я цифра: сколько пальцев на одной руке.",
       ],
 
       /* Código certo. Precisa ter a mesma quantidade de dígitos
          que de pistas (cada dígito vai de 0 a 9). */
       codigo: [1, 3, 5],
 
-      botaoAbrir: "Abrir",
-      mensagemErro: "Ainda não... tente de novo.",
-      mensagemAcerto: "Destrancou!",
+      botaoAbrir: "Открыть",
+      mensagemErro: "Ещё нет... попробуй снова.",
+      mensagemAcerto: "Открылось!",
     },
   },
 
@@ -214,108 +214,108 @@ Diario.config = {
   conteudos: [
     {
       id: "memoria-01",
-      titulo: "Memories in the Rain",
-      nota: "poema",
-      texto: "Se eu fosse a chuva, poderia unir meu coração ao seu?<br>Assim como ela une os eternamente distantes céu e terra.",
+      titulo: "Воспоминания под дождём",
+      nota: "стихотворение",
+      texto: "Если бы я был дождём, смог бы я соединить своё сердце с твоим?<br>Так же, как дождь соединяет вечно далёкие друг от друга небо и землю.",
       ilustracao: "flor",
       imagem: "assets/illustrations/memoria-07.jpg",
       fundo: null,
     },
     {
       id: "memoria-02",
-      titulo: "Night of Wijnruit",
-      nota: "poema",
-      texto: "Os raios de sol que aos poucos brilham<br>Os raios de sol que aos poucos banham a Terra apagam as pegadas deixadas na fina camada de neve.<br>Não tema ser iludida, pois, mesmo que o mundo esteja repleto de decepções, ainda existem aqueles que desejam proteger seu sorriso.",
+      titulo: "Ночь Вейнрёйт",
+      nota: "стихотворение",
+      texto: "Лучи солнца, что понемногу разгораются,<br>Лучи солнца, что понемногу омывают землю, стирают следы, оставленные на тонком слое снега.<br>Не бойся, что тебя обманут: пусть даже мир полон разочарований, всё равно есть те, кто хочет защитить твою улыбку.",
       ilustracao: "coracao",
       imagem: "assets/illustrations/memoria-04.jpg",
       fundo: null,
     },
     {
       id: "memoria-03",
-      titulo: "Medo",
-      nota: "poema",
-      texto: "Se minhas palavras tomassem forma,<br>seria como se meu fracasso chegasse até você, parado na escuridão.",
+      titulo: "Страх",
+      nota: "стихотворение",
+      texto: "Если бы мои слова обрели форму,<br>это было бы так, словно моя неудача дошла до тебя, застывшей во тьме.",
       ilustracao: "estrela",
       imagem: "assets/illustrations/memoria-01.jpg",
       fundo: null,
     },
     {
       id: "memoria-04",
-      titulo: "My Last Words",
-      nota: "poema",
-      texto: "A menos que eu agarre a espada, eu não poderei proteger você.<br>Enquanto agarro a espada, eu não posso abraçar você.",
+      titulo: "Мои последние слова",
+      nota: "стихотворение",
+      texto: "Пока я не возьмусь за меч, я не смогу тебя защитить.<br>Пока я сжимаю меч, я не могу тебя обнять.",
       ilustracao: "arvore",
       imagem: "assets/illustrations/memoria-12.jpg",
       fundo: null,
     },
     {
       id: "memoria-05",
-      titulo: "Nós",
-      nota: "poema",
-      texto: "Como um: estamos entrelaçados.<br>Como dois: não compartilhamos uma mesma forma.<br>Como três: não temos olhos.<br>Como quatro: temos esperança.<br>No quinto: é onde está o coração.",
+      titulo: "Мы",
+      nota: "стихотворение",
+      texto: "Как один — мы сплетены.<br>Как два — у нас не одно обличье.<br>Как три — у нас нет глаз.<br>Как четыре — у нас есть надежда.<br>А в пятом — там, где живёт сердце.",
       ilustracao: "portao",
       imagem: "assets/illustrations/memoria-03.jpg",
       fundo: null,
     },
     {
       id: "memoria-06",
-      titulo: "All the Words",
-      nota: "poema",
-      texto: "As palavras são a melhor forma de comunicação.<br>“Te amo”, “te quero”, “te adoro”.<br>De que me serve tudo isso... se não te tenho ao meu lado?",
+      titulo: "Все слова",
+      nota: "стихотворение",
+      texto: "Слова — лучший способ говорить друг с другом.<br>«Люблю тебя», «ты мне нужна», «обожаю тебя».<br>Какой мне прок от всего этого... если тебя нет рядом?",
       ilustracao: "chave",
       imagem: "assets/illustrations/memoria-10.jpg",
       fundo: null,
     },
     {
       id: "memoria-07",
-      titulo: "Memories",
-      nota: "a distância não decide tudo",
-      texto: "A distância pode separar dois mundos, mas o coração sempre procura uma maneira de se aproximar de quem é especial.",
+      titulo: "Воспоминания",
+      nota: "расстояние решает не всё",
+      texto: "Расстояние может разделить два мира, но сердце всегда ищет способ приблизиться к тому, кто ему дорог.",
       ilustracao: "sol",
       imagem: "assets/illustrations/memoria-02.jpg",
       fundo: null,
     },
     {
       id: "memoria-08",
-      titulo: "Night of Blue Skie",
-      nota: "preservar o teu sorriso",
-      texto: "Mesmo que o mundo traga decepções, ainda existem pessoas que desejam cuidar de você e preservar o seu sorriso.",
+      titulo: "Ночь синего неба",
+      nota: "беречь твою улыбку",
+      texto: "Даже если мир приносит разочарования, всё равно есть люди, которые хотят заботиться о тебе и беречь твою улыбку.",
       ilustracao: "lua",
       imagem: "assets/illustrations/memoria-05.jpg",
       fundo: null,
     },
     {
       id: "memoria-09",
-      titulo: "Your Best Fear",
-      nota: "o medo de falhar",
-      texto: "Às vezes, o medo de falhar torna difícil expressar aquilo que realmente sentimos. Ainda assim, há sentimentos que merecem encontrar o caminho até você.",
+      titulo: "Твой главный страх",
+      nota: "страх не справиться",
+      texto: "Иногда страх не справиться мешает выразить то, что мы на самом деле чувствуем. И всё же есть чувства, которые заслуживают найти дорогу к тебе.",
       ilustracao: "casa",
       imagem: "assets/illustrations/memoria-06.jpg",
       fundo: null,
     },
     {
       id: "memoria-10",
-      titulo: "My Last Bravery",
-      nota: "a coragem de baixar a espada",
-      texto: "A força não está apenas em empunhar uma espada para proteger alguém, mas também em saber quando baixá-la para oferecer um abraço.",
+      titulo: "Моя последняя отвага",
+      nota: "смелость опустить меч",
+      texto: "Сила не только в том, чтобы поднять меч ради защиты любимого человека, но и в умении вовремя опустить его, чтобы обнять.",
       ilustracao: "borboleta",
       imagem: "assets/illustrations/memoria-11.jpg",
       fundo: null,
     },
     {
       id: "memoria-11",
-      titulo: "Nós",
-      nota: "pequenas partes de quem você é",
-      texto: "Duas pessoas podem ser diferentes e viver em mundos distintos, mas ainda encontrar esperança e conexão uma na outra.",
+      titulo: "Мы",
+      nota: "маленькие частицы тебя",
+      texto: "Два человека могут быть разными и жить в разных мирах, но всё равно найти друг в друге надежду и близость.",
       ilustracao: "envelope",
       imagem: "assets/illustrations/memoria-09.jpg",
       fundo: null,
     },
     {
       id: "memoria-12",
-      titulo: "It's For You",
-      nota: "para guardar no coração",
-      texto: "As palavras podem expressar o que sentimos, mas nada substitui a felicidade de poder estar ao lado de quem queremos.",
+      titulo: "Это для тебя",
+      nota: "хранить в сердце",
+      texto: "Слова могут выразить то, что мы чувствуем, но ничто не заменит счастья быть рядом с теми, кого мы любим.",
       ilustracao: "livro",
       imagem: "assets/illustrations/memoria-08.jpg",
       fundo: null,
