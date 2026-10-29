@@ -232,7 +232,7 @@ Diario.config = {
     },
     {
       id: "memoria-03",
-      titulo: "Sem nome",
+      titulo: "Medo",
       nota: "poema",
       texto: "Se minhas palavras tomassem forma,<br>seria como se meu fracasso chegasse até você, parado na escuridão.",
       ilustracao: "estrela",
@@ -259,7 +259,7 @@ Diario.config = {
     },
     {
       id: "memoria-06",
-      titulo: "My Last Words",
+      titulo: "All the Words",
       nota: "poema",
       texto: "As palavras são a melhor forma de comunicação.<br>“Te amo”, “te quero”, “te adoro”.<br>De que me serve tudo isso... se não te tenho ao meu lado?",
       ilustracao: "chave",
@@ -268,7 +268,7 @@ Diario.config = {
     },
     {
       id: "memoria-07",
-      titulo: "Memories in the Rain",
+      titulo: "Memories",
       nota: "a distância não decide tudo",
       texto: "A distância pode separar dois mundos, mas o coração sempre procura uma maneira de se aproximar de quem é especial.",
       ilustracao: "sol",
@@ -277,7 +277,7 @@ Diario.config = {
     },
     {
       id: "memoria-08",
-      titulo: "Night of Wijnruit",
+      titulo: "Night of Blue Skie",
       nota: "preservar o teu sorriso",
       texto: "Mesmo que o mundo traga decepções, ainda existem pessoas que desejam cuidar de você e preservar o seu sorriso.",
       ilustracao: "lua",
@@ -286,7 +286,7 @@ Diario.config = {
     },
     {
       id: "memoria-09",
-      titulo: "Sem título",
+      titulo: "Your Best Fear",
       nota: "o medo de falhar",
       texto: "Às vezes, o medo de falhar torna difícil expressar aquilo que realmente sentimos. Ainda assim, há sentimentos que merecem encontrar o caminho até você.",
       ilustracao: "casa",
@@ -295,7 +295,7 @@ Diario.config = {
     },
     {
       id: "memoria-10",
-      titulo: "My Last Words",
+      titulo: "My Last Bravery",
       nota: "a coragem de baixar a espada",
       texto: "A força não está apenas em empunhar uma espada para proteger alguém, mas também em saber quando baixá-la para oferecer um abraço.",
       ilustracao: "borboleta",
@@ -313,7 +313,7 @@ Diario.config = {
     },
     {
       id: "memoria-12",
-      titulo: "My Last Words",
+      titulo: "It's For You",
       nota: "para guardar no coração",
       texto: "As palavras podem expressar o que sentimos, mas nada substitui a felicidade de poder estar ao lado de quem queremos.",
       ilustracao: "livro",
