@@ -85,6 +85,7 @@ No parquinho, as tardes eram preenchidas por brincadeiras, balanços e descobert
 | Desenho das plantas (broto, botão, margarida) | `js/minigames/garden.js`       | funções `desenharEstagio0` a `3`       |
 | Pistas e código da fechadura (opcional)       | `js/config.js`                 | `minijogos.fechadura`                  |
 | Tamanho do labirinto / peças do quebra-cabeça | `js/config.js`                 | `minijogos.labirinto` e `quebraCabeca` |
+| Música de fundo (arquivo e volume)            | `js/config.js`                 | bloco `musica` + arquivo em `assets/audio/` |
 | Velocidade da virada de página                | `js/config.js`                 | bloco `virada`                         |
 | Intensidade do "tremido" de lápis             | `js/config.js`                 | `estilo.intensidadeRabisco`            |
 | Formato do caminho de fundo                   | `js/config.js`                 | `fundo.semente` (troque o número)      |
@@ -92,6 +93,12 @@ No parquinho, as tardes eram preenchidas por brincadeiras, balanços e descobert
 | Fontes                                        | `index.html` + `css/style.css` | link do Google Fonts e `--fonte-*`     |
 | Tamanho da folha do alento                    | `css/style.css`                | `--folha-largura` e `--folha-altura`   |
 | Criar um desenho novo                         | `js/doodles.js`                | adicione uma função em `desenhos`      |
+
+## Música de fundo
+
+Coloque sua música em `assets/audio/musica.mp3` (ou mude o nome em `musica.arquivo`, em `js/config.js`).
+Ela começa quando qualquer porta é aberta (ou ao tocar em "Continuar de onde parei") e fica em looping.
+Abrir outra porta não reinicia a música. Se o arquivo não existir, o site funciona normalmente, sem som.
 
 ## Usar suas próprias imagens
 

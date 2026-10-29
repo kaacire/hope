@@ -32,6 +32,14 @@ Diario.config = {
      false = os 12 conteúdos vêm embaralhados, em qualquer porta. */
   primeiroConteudoEhDaPorta: true,
 
+  /* Música de fundo: começa ao abrir qualquer porta e toca em
+     looping. Coloque o arquivo em assets/audio/ e ajuste o nome.
+     volume: de 0 (mudo) a 1 (máximo). */
+  musica: {
+    arquivo: "assets/audio/musica.mp3",
+    volume: 0.6,
+  },
+
   /* ========================================================
      2. SEQUÊNCIA (conteúdos + minijogos)
      ======================================================== */
@@ -207,8 +215,8 @@ Diario.config = {
     {
       id: "memoria-01",
       titulo: "Memories in the Rain",
-      nota: "entre céu e terra",
-      texto: "Se eu fosse a chuva, poderia unir meu coração ao seu? Assim como ela une os eternamente distantes céu e terra.",
+      nota: "poema",
+      texto: "Se eu fosse a chuva, poderia unir meu coração ao seu?<br>Assim como ela une os eternamente distantes céu e terra.",
       ilustracao: "flor",
       imagem: "assets/illustrations/memoria-07.jpg",
       fundo: null,
@@ -216,17 +224,17 @@ Diario.config = {
     {
       id: "memoria-02",
       titulo: "Night of Wijnruit",
-      nota: "mesmo no inverno",
-      texto: "Os raios de sol que aos poucos brilham banham a Terra e apagam as pegadas deixadas na fina camada de neve. Não tema ser iludida: mesmo num mundo cheio de decepções, ainda há quem queira proteger seu sorriso.",
+      nota: "poema",
+      texto: "Os raios de sol que aos poucos brilham<br>Os raios de sol que aos poucos banham a Terra apagam as pegadas deixadas na fina camada de neve.<br>Não tema ser iludida, pois, mesmo que o mundo esteja repleto de decepções, ainda existem aqueles que desejam proteger seu sorriso.",
       ilustracao: "coracao",
-      imagem: "assets/illustrations/memoria-02.jpg",
+      imagem: "assets/illustrations/memoria-04.jpg",
       fundo: null,
     },
     {
       id: "memoria-03",
       titulo: "Sem nome",
-      nota: "o que não consegui dizer",
-      texto: "Se minhas palavras tomassem forma, seria como se meu fracasso chegasse até você, parado na escuridão.",
+      nota: "poema",
+      texto: "Se minhas palavras tomassem forma,<br>seria como se meu fracasso chegasse até você, parado na escuridão.",
       ilustracao: "estrela",
       imagem: "assets/illustrations/memoria-01.jpg",
       fundo: null,
@@ -234,26 +242,26 @@ Diario.config = {
     {
       id: "memoria-04",
       titulo: "My Last Words",
-      nota: "proteger também é abraçar",
-      texto: "A menos que eu agarre a espada, não poderei proteger você. Enquanto agarro a espada, não posso abraçar você.",
+      nota: "poema",
+      texto: "A menos que eu agarre a espada, eu não poderei proteger você.<br>Enquanto agarro a espada, eu não posso abraçar você.",
       ilustracao: "arvore",
-      imagem: "assets/illustrations/memoria-03.jpg",
+      imagem: "assets/illustrations/memoria-12.jpg",
       fundo: null,
     },
     {
       id: "memoria-05",
       titulo: "Nós",
-      nota: "um coração entre dois mundos",
-      texto: "Como um: estamos entrelaçados. Como dois: não compartilhamos uma mesma forma. Como três: não temos olhos. Como quatro: temos esperança. No quinto: é onde está o coração.",
+      nota: "poema",
+      texto: "Como um: estamos entrelaçados.<br>Como dois: não compartilhamos uma mesma forma.<br>Como três: não temos olhos.<br>Como quatro: temos esperança.<br>No quinto: é onde está o coração.",
       ilustracao: "portao",
-      imagem: "assets/illustrations/memoria-12.jpg",
+      imagem: "assets/illustrations/memoria-03.jpg",
       fundo: null,
     },
     {
       id: "memoria-06",
       titulo: "My Last Words",
-      nota: "palavras não bastam",
-      texto: "As palavras são a melhor forma de comunicação: “te amo”, “te quero”, “te adoro”. De que me serve tudo isso... se não te tenho ao meu lado?",
+      nota: "poema",
+      texto: "As palavras são a melhor forma de comunicação.<br>“Te amo”, “te quero”, “te adoro”.<br>De que me serve tudo isso... se não te tenho ao meu lado?",
       ilustracao: "chave",
       imagem: "assets/illustrations/memoria-10.jpg",
       fundo: null,
@@ -264,7 +272,7 @@ Diario.config = {
       nota: "a distância não decide tudo",
       texto: "A distância pode separar dois mundos, mas o coração sempre procura uma maneira de se aproximar de quem é especial.",
       ilustracao: "sol",
-      imagem: "assets/illustrations/memoria-04.jpg",
+      imagem: "assets/illustrations/memoria-02.jpg",
       fundo: null,
     },
     {

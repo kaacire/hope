@@ -34,6 +34,42 @@ Diario.virada = (function () {
     el.folha   = document.getElementById("folha-virando");
     el.frente  = document.getElementById("pagina-frente");
     el.embaixo = document.getElementById("pagina-embaixo");
+
+    window.addEventListener("resize", remedir);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remedir);
+  }
+
+
+  /* Mede a altura que a página precisa para o texto caber e
+     passa para o card (CSS limita entre o mínimo e o máximo).
+     Minijogos não têm .folha: voltam à altura padrão. */
+  function ajustarAltura(container, semTransicao) {
+    const folha = container.querySelector(".folha");
+
+    if (semTransicao) el.pilha.style.transition = "none";
+
+    if (!folha) {
+      el.pilha.style.removeProperty("--altura-atual");
+    } else {
+      folha.style.height = "auto";
+
+      const bordas = container.offsetHeight - container.clientHeight;
+      const natural = Math.ceil(folha.offsetHeight + bordas);
+
+      folha.style.height = "";
+      el.pilha.style.setProperty("--altura-atual", natural + "px");
+    }
+
+    if (semTransicao) {
+      void el.pilha.offsetHeight;
+      el.pilha.style.transition = "";
+    }
+  }
+
+
+  /* Fonte carregou ou a tela girou: remede a página da frente */
+  function remedir() {
+    if (!bloqueado && el.frente.firstChild) ajustarAltura(el.frente, true);
   }
 
 
@@ -53,6 +89,7 @@ Diario.virada = (function () {
   function mostrar(construir) {
     el.frente.replaceChildren();
     construir(el.frente);
+    ajustarAltura(el.frente, true);
 
     if (util.reduzMovimento()) return;
 
@@ -77,6 +114,7 @@ Diario.virada = (function () {
     /* 1. Prepara a próxima página embaixo */
     el.embaixo.replaceChildren();
     construir(el.embaixo);
+    ajustarAltura(el.embaixo, false); // o card estica/encolhe durante a virada
 
     const duracao = util.reduzMovimento() ? 0 : Diario.config.virada.duracaoMs;
 

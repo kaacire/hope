@@ -25,7 +25,8 @@
 
   /* ---------- Tamanho da folha do alento ---------- */
   --folha-largura: min(86vw, 420px);
-  --folha-altura: min(64vh, 580px);
+  --folha-altura: min(64vh, 580px); /* altura MÍNIMA do card */
+  --folha-altura-max: min(100vh - 9rem, 760px); /* o card estica até aqui */
 
   /* ---------- Virada de página (config.js sobrescreve) ---------- */
   --virada-ms: 800ms;
@@ -40,6 +41,7 @@
 @supports (height: 1dvh) {
   :root {
     --folha-altura: min(64dvh, 580px);
+    --folha-altura-max: min(100dvh - 9rem, 760px);
   }
 }
 
@@ -250,25 +252,44 @@ button {
 }
 
 .folha-ilustracao {
-  flex: 0 0 auto;
-  height: clamp(90px, 20vh, 170px);
-  margin: 0.2rem 0 0.6rem;
+  flex: 0 1 auto;
+  height: clamp(150px, 34vh, 290px);
+  min-height: 130px; /* encolhe antes de o texto ser cortado */
+  margin: 0.5rem 0 0.9rem;
   display: flex;
   justify-content: center;
 }
 
-.folha-ilustracao .rabisco-svg,
-.folha-ilustracao img {
+.folha-ilustracao .rabisco-svg {
   width: auto;
   height: 100%;
   max-width: 100%;
   object-fit: contain;
 }
 
+/* Foto com moldura de polaroid: borda de lápis por fora,
+   faixa de papel claro por dentro e sombra deslocada */
+.folha-ilustracao img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  padding: 6px;
+  background: #fbf5ea;
+  border: var(--traco) solid var(--marrom);
+  border-radius: 9px 7px 10px 7px / 7px 10px 7px 9px;
+  box-shadow:
+    3px 5px 0 rgba(121, 92, 84, 0.28),
+    0 8px 14px rgba(74, 54, 47, 0.16);
+}
+
+/* Texto em verso: itálico, uma linha por verso */
 .folha-texto {
   margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.6;
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.75;
   color: var(--tinta);
 }
 

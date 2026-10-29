@@ -60,7 +60,12 @@
 .pilha {
   position: relative;
   width: var(--folha-largura);
-  height: var(--folha-altura);
+  /* --altura-atual é medida por page-turn.js a partir do texto;
+     min/max mantêm o card entre a altura padrão e o limite da tela */
+  height: var(--altura-atual, var(--folha-altura));
+  min-height: var(--folha-altura);
+  max-height: var(--folha-altura-max);
+  transition: height calc(var(--virada-ms) * 0.6) ease;
   transform: rotate(-0.7deg); /* folha "colocada à mão" */
   transform-style: preserve-3d;
   pointer-events: auto;
@@ -185,6 +190,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   .folha-virando {
+    transition: none;
+  }
+
+  .pilha {
     transition: none;
   }
 

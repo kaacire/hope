@@ -164,6 +164,8 @@ Diario.app = (function () {
   async function abrirPorta(indice, botao) {
     if (portaAbrindo) return;
 
+    Diario.musica.tocar(); // dentro do clique: o navegador libera o som
+
     portaAbrindo = true;
     botao.classList.add("aberta");
 
@@ -238,6 +240,8 @@ Diario.app = (function () {
   }
 
   function retomarJogo() {
+    Diario.musica.tocar();
+
     const salvo = armazenamento.carregar();
 
     if (!progressoValido(salvo)) return;
