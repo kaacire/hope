@@ -1,6 +1,9 @@
 # alento interativo
 
 Abra o `index.html` no navegador (duplo clique). Não precisa de servidor nem de instalação.
+
+O diário contém 12 páginas com poemas e lembranças, usando as fotografias da pasta `assets/illustrations/`.
+
 Memories in the Rain:
 
 Se eu fosse a chuva, poderia unir meu coração ao seu?
@@ -75,7 +78,7 @@ No parquinho, as tardes eram preenchidas por brincadeiras, balanços e descobert
 
 | Quero mudar...                                | Arquivo                        | O quê                                  |
 | --------------------------------------------- | ------------------------------ | -------------------------------------- |
-| Textos, títulos e desenhos das 12 páginas     | `js/config.js`                 | lista `conteudos`                      |
+| Textos, títulos, notas e imagens das 12 páginas | `js/config.js`               | lista `conteudos`                      |
 | Mensagem final, textos dos botões             | `js/config.js`                 | bloco `textos`                         |
 | Quando aparecem os minijogos e a ordem deles  | `js/config.js`                 | bloco `sequencia`                      |
 | Velocidade de crescimento das plantas         | `js/config.js`                 | `minijogos.jardim.segundosPorEstagio`  |
@@ -92,9 +95,9 @@ No parquinho, as tardes eram preenchidas por brincadeiras, balanços e descobert
 
 ## Usar suas próprias imagens
 
-Em cada item de `conteudos` (config.js):
+Em cada item de `conteudos` (`js/config.js`):
 
-- `imagem: "assets/illustrations/foto1.webp"` troca o desenho da página pela sua imagem.
+- `imagem: "assets/illustrations/memoria-01.jpg"` define a fotografia exibida naquela página. As 12 imagens atuais já estão associadas aos cards.
 - `fundo: "assets/backgrounds/caminho-01.webp"` troca o caminho gerado pelo código.
 
 Se a imagem não carregar, o desenho/caminho padrão aparece no lugar.
@@ -114,7 +117,7 @@ css/   style.css · doors.css · page-turn.css · minigames.css
 js/    config.js · utils.js · doodles.js · storage.js · sequence.js
        background.js · page-turn.js · main.js
        minigames/  maze.js · puzzle.js · garden.js · lock.js
-assets/  (pastas vazias para as suas imagens)
+assets/illustrations/  memoria-01.jpg a memoria-12.jpg
 ```
 
 ## Minijogos incluídos
