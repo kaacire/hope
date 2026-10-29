@@ -144,8 +144,8 @@ Diario.config = {
     jardim: {
       titulo: "O jardim",
       instrucao:
-        "Segure o dedo em cada vasinho para regar. " +
-        "Todas precisam virar margaridas.",
+        "Segure o dedo em cada vasinho para regar. ",
+        
 
       /* Segundos de rega para passar de um estágio ao próximo.
          São 3 estágios (broto, botão, margarida), então cada planta
@@ -209,8 +209,8 @@ Diario.config = {
       titulo: "O começo",
       nota: "(lembra?)",
       texto:
-        "Toda história tem um primeiro dia. Troque este texto " +
-        "pelo seu: conte o que aconteceu e por que ficou guardado.",
+        "Tu és pra mim, um garoto igual a cem mil outros." +
+        " Como assim?",
       ilustracao: "flor",
       imagem: null,
       fundo: null,
@@ -219,7 +219,7 @@ Diario.config = {
       id: "memoria-02",
       titulo: "Um riso",
       nota: "",
-      texto: "Escreva aqui uma lembrança que faz sorrir só de pensar.",
+      texto: "Aos teus olhos, não passo de uma raposa igual a cem mil outras.",
       ilustracao: "coracao",
       imagem: null,
       fundo: null,
@@ -228,7 +228,8 @@ Diario.config = {
       id: "memoria-03",
       titulo: "A primeira conversa",
       nota: "foi sem querer",
-      texto: "Escreva aqui como foi o começo da conversa que mudou tudo.",
+      texto: "Não tenho necessidade de ti, e tu também não tens necessidade de mim." + 
+      " Então quer dizer que se eu te cativar...",
       ilustracao: "estrela",
       imagem: null,
       fundo: null,
@@ -238,8 +239,8 @@ Diario.config = {
       titulo: "Uma tarde qualquer",
       nota: "",
       texto:
-        "Algumas tardes comuns viram as melhores. " +
-        "Conte qual foi a de vocês.",
+        "Teremos necessidade um do outro. " +
+        "Serás pra mim único no mundo.",
       ilustracao: "arvore",
       imagem: null,
       fundo: null,
@@ -248,7 +249,7 @@ Diario.config = {
       id: "memoria-05",
       titulo: "O lugar favorito",
       nota: "só nosso",
-      texto: "Descreva o lugar onde o tempo parece andar mais devagar.",
+      texto: "Eu acho que eu entendo agora.",
       ilustracao: "portao",
       imagem: null,
       fundo: null,
@@ -257,7 +258,7 @@ Diario.config = {
       id: "memoria-06",
       titulo: "A chave",
       nota: "",
-      texto: "Existe algo que só vocês dois sabem abrir. " + "Escreva o que é.",
+      texto: "Os espinhos em volta de mim não são para me proteger disso...",
       ilustracao: "chave",
       imagem: null,
       fundo: null,
@@ -265,8 +266,8 @@ Diario.config = {
     {
       id: "memoria-07",
       titulo: "Dia de sol",
-      nota: "(que calor!)",
-      texto: "Escreva sobre um dia claro que ficou na memória.",
+      nota: "Porque, de fato",
+      texto: "Não existe utilidade...",
       ilustracao: "sol",
       imagem: null,
       fundo: null,
@@ -275,48 +276,48 @@ Diario.config = {
       id: "memoria-08",
       titulo: "Noite de lua",
       nota: "",
-      texto: "Conte uma noite em que a conversa não queria acabar.",
+      texto: "... Em ferir alguém pra poder se proteger.",
       ilustracao: "lua",
       imagem: null,
       fundo: null,
     },
     {
       id: "memoria-09",
-      titulo: "A casa",
+      titulo: "Eu cantei sobre nós",
       nota: "um dia...",
       texto:
-        "Escreva o que vocês imaginam para o futuro, " +
-        "mesmo que seja só um desenho no papel.",
+        "No dia em que eu observei, " +
+        "mil pôr do sóis.",
       ilustracao: "casa",
       imagem: null,
       fundo: null,
     },
     {
       id: "memoria-10",
-      titulo: "Uma borboleta",
+      titulo: "Me diga, o que você vê?",
       nota: "",
-      texto: "Pequenas coisas que deram frio na barriga. " + "Conte uma delas.",
+      texto: "Um desenho de elefante dentro de uma cobra. " + "Um chapéu de cowboy daqueles da TV?",
       ilustracao: "borboleta",
       imagem: null,
       fundo: null,
     },
     {
       id: "memoria-11",
-      titulo: "Carta guardada",
+      titulo: "eu acho que enxerga você",
       nota: "não abra antes",
       texto:
-        "Escreva aqui as palavras que você nunca soube " + "dizer em voz alta.",
+        "De repente, vendamos os olhos. " + "E nada tem mais brilho aos nossos.",
       ilustracao: "envelope",
       imagem: null,
       fundo: null,
     },
     {
       id: "memoria-12",
-      titulo: "O livro continua",
+      titulo: "Pequeno Principe",
       nota: "",
       texto:
-        "A última página é só o começo da próxima. " +
-        "Escreva o seu desejo para o que vem agora.",
+        "Deixa eu descansar no teu colo. " +
+        "Deixa o amor apagar o meu ódio.",
       ilustracao: "livro",
       imagem: null,
       fundo: null,
