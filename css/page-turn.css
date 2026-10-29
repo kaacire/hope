@@ -1,0 +1,198 @@
+/* ==========================================================
+   page-turn.css — a tela do alento e a virada de página 3D
+   ----------------------------------------------------------
+   Duração, perspectiva e easing vêm de js/config.js
+   (variáveis --virada-ms, --virada-perspectiva, --virada-easing).
+   O tamanho da folha está em css/style.css (--folha-largura
+   e --folha-altura).
+   ========================================================== */
+
+.tela-diario {
+  background: var(--papel) var(--granulado);
+}
+
+/* ---------- Botões fixos da tela ---------- */
+
+.botao-voltar {
+  appearance: none;
+  position: absolute;
+  z-index: 5;
+  top: calc(0.7rem + env(safe-area-inset-top));
+  left: 0.9rem;
+  padding: 0.2rem 0.6rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  color: var(--marrom);
+}
+
+.botao-continuar {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: calc(1.3rem + env(safe-area-inset-bottom));
+  width: fit-content;
+  margin: 0 auto;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* ---------- O livro (centraliza a folha) ---------- */
+
+.livro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.2rem 0 5.4rem;
+  perspective: var(--virada-perspectiva);
+  pointer-events: none;
+}
+
+.pilha {
+  position: relative;
+  width: var(--folha-largura);
+  height: var(--folha-altura);
+  transform: rotate(-0.7deg); /* folha "colocada à mão" */
+  transform-style: preserve-3d;
+  pointer-events: auto;
+}
+
+/* ---------- A folha de papel ---------- */
+
+.pagina {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  background: var(--papel) var(--granulado);
+  border: var(--traco) solid var(--marrom);
+  border-radius: 5px 13px 7px 12px / 12px 6px 13px 7px;
+  box-shadow:
+    0 10px 22px rgba(74, 54, 47, 0.22),
+    3px 4px 0 rgba(121, 92, 84, 0.18);
+}
+
+/* Linha pontilhada da "encadernação" */
+.pagina::before {
+  content: "";
+  position: absolute;
+  top: 0.8rem;
+  bottom: 0.8rem;
+  left: 0.9rem;
+  border-left: 2px dashed rgba(201, 175, 160, 0.9);
+  pointer-events: none;
+}
+
+.pagina-embaixo {
+  pointer-events: none;
+}
+
+/* Animação da primeira página (ao entrar por uma porta) */
+.pagina.surgindo {
+  animation: pagina-surgir 0.6s ease both;
+}
+
+@keyframes pagina-surgir {
+  from {
+    opacity: 0;
+    transform: translateY(14px) rotate(-1.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- A folha que vira ---------- */
+
+.folha-virando {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform var(--virada-ms) var(--virada-easing);
+  will-change: transform;
+}
+
+.folha-virando.virando {
+  transform: rotateY(-180deg);
+}
+
+.face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* O verso do papel: mais escuro, com pautas */
+.face-verso {
+  transform: rotateY(180deg);
+  background:
+    repeating-linear-gradient(
+      transparent 0 27px,
+      rgba(121, 92, 84, 0.18) 27px 28px
+    ),
+    var(--granulado), var(--papel-escuro);
+}
+
+/* No fim da virada o verso some devagar (evita um "pulo" visual) */
+.folha-virando.virando .face-verso {
+  opacity: 0;
+  transition: opacity calc(var(--virada-ms) * 0.25) linear
+    calc(var(--virada-ms) * 0.75);
+}
+
+/* ---------- Sombra que acompanha a dobra ---------- */
+
+.sombra-virada {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px 13px 7px 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(60, 40, 32, 0.38),
+    rgba(60, 40, 32, 0) 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pilha.virando .sombra-virada {
+  animation: sombra-virada var(--virada-ms) ease-in-out;
+}
+
+@keyframes sombra-virada {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Menos movimento: sem giro 3D ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .folha-virando {
+    transition: none;
+  }
+
+  .pagina.surgindo {
+    animation: none;
+  }
+
+  .pilha.virando .sombra-virada {
+    animation: none;
+  }
+}

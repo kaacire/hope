@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F5EBDD">
+  <title>Nosso alento</title>
+
+  <!-- Fontes (Google Fonts).
+       Para trocar, altere o link abaixo E as variáveis --fonte-*
+       no início de css/style.css. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doors.css">
+  <link rel="stylesheet" href="css/page-turn.css">
+  <link rel="stylesheet" href="css/minigames.css">
+</head>
+
+<body>
+
+  <!-- Filtro que deixa as linhas "tremidas", como desenhadas à mão.
+       A força vem de config.js (estilo.intensidadeRabisco). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="rabisco" x="-8%" y="-8%" width="116%" height="116%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035"
+                      numOctaves="2" seed="3" result="ruido" />
+        <feDisplacementMap in="SourceGraphic" in2="ruido" scale="3"
+                           xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+
+  <!-- ======================================================
+       TELA A — AS 12 PORTAS
+       (as portas são criadas por js/main.js a partir do config)
+       ====================================================== -->
+  <section id="tela-portas" class="tela tela-portas ativa" aria-label="As portas">
+
+    <header class="portas-cabecalho">
+      <h1 id="titulo-portas" class="portas-titulo"></h1>
+      <p id="subtitulo-portas" class="portas-subtitulo"></p>
+    </header>
+
+    <!-- Aparece só se existir um progresso salvo -->
+    <div id="aviso-retomar" class="aviso-retomar oculto">
+      <p id="texto-retomar" class="aviso-retomar-texto"></p>
+      <div class="aviso-retomar-botoes">
+        <button id="btn-retomar" class="botao-nota" type="button"></button>
+        <button id="btn-recomecar" class="botao-nota botao-discreto" type="button"></button>
+      </div>
+    </div>
+
+    <div id="coluna-portas" class="coluna-portas"></div>
+
+  </section>
+
+
+  <!-- ======================================================
+       TELA B — O alento ABERTO
+       ====================================================== -->
+  <section id="tela-diario" class="tela tela-diario" aria-label="O alento">
+
+    <!-- Camada 1: fundo ilustrado (o caminho desenhado) -->
+    <div id="fundo" class="fundo" aria-hidden="true">
+      <div class="fundo-camada"></div>
+      <div class="fundo-camada"></div>
+    </div>
+
+    <button id="btn-portas" class="botao-voltar" type="button"></button>
+
+    <!-- Camada 2: a folha do alento (é ela que vira em 3D) -->
+    <div class="livro">
+      <div id="pilha" class="pilha">
+
+        <!-- A próxima página, esperando embaixo -->
+        <div id="pagina-embaixo" class="pagina pagina-embaixo"></div>
+
+        <div class="sombra-virada"></div>
+
+        <!-- A página atual, que gira em torno da borda esquerda -->
+        <div id="folha-virando" class="folha-virando">
+          <div id="pagina-frente" class="pagina face face-frente"></div>
+          <div class="pagina face face-verso"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Camada 4: controle de avanço -->
+    <button id="btn-continuar" class="botao-nota botao-continuar" type="button"></button>
+
+  </section>
+
+
+  <!-- ======================================================
+       SCRIPTS (a ordem importa)
+       ====================================================== -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/doodles.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/sequence.js"></script>
+  <script src="js/background.js"></script>
+  <script src="js/page-turn.js"></script>
+  <script src="js/minigames/maze.js"></script>
+  <script src="js/minigames/puzzle.js"></script>
+  <script src="js/minigames/garden.js"></script>
+  <script src="js/minigames/lock.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

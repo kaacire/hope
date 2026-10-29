@@ -1,0 +1,454 @@
+/* ==========================================================
+   minigames.css — estilo dos três desafios
+   ----------------------------------------------------------
+   Todos usam o mesmo papel, traço e fontes do resto do alento.
+   ========================================================== */
+
+/* ---------- Estrutura comum ---------- */
+
+.mg {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 1.2rem 1rem 1.9rem;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.mg-titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--vinho);
+}
+
+.mg-instrucao {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.mg-mensagem {
+  min-height: 1.4rem;
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.35rem;
+  color: var(--vinho);
+}
+
+/* Carimbo de vitória (todos os minijogos) */
+.mg.venceu .mg-titulo::after {
+  content: " ✓";
+  color: var(--salvia);
+}
+
+/* ==========================================================
+   1. LABIRINTO
+   ========================================================== */
+
+.mg-labirinto-area {
+  width: 100%;
+  touch-action: none; /* deslizar o dedo não rola a página */
+  user-select: none;
+}
+
+.mg-labirinto-area svg {
+  display: block;
+  width: 100%;
+  max-height: 34vh;
+  margin: 0 auto;
+  filter: var(--filtro-rabisco);
+}
+
+.mg-parede {
+  fill: none;
+  stroke: var(--marrom);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+
+.mg-jogador {
+  transition: transform 0.13s ease-out;
+}
+
+.mg-jogador circle {
+  fill: var(--vinho);
+  stroke: var(--marrom);
+  stroke-width: 2;
+}
+
+/* Setas direcionais */
+.mg-direcional {
+  display: grid;
+  grid-template-columns: repeat(3, 46px);
+  grid-template-rows: repeat(2, 42px);
+  gap: 5px;
+}
+
+.mg-direcional button {
+  appearance: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--marrom);
+  background: var(--papel);
+  border: 2px solid var(--marrom);
+  border-radius: 9px 14px 10px 13px;
+  box-shadow: 2px 3px 0 rgba(121, 92, 84, 0.3);
+}
+
+.mg-direcional button:active {
+  transform: translate(1px, 2px);
+  box-shadow: none;
+}
+
+.mg-seta-cima {
+  grid-column: 2;
+  grid-row: 1;
+}
+.mg-seta-esquerda {
+  grid-column: 1;
+  grid-row: 2;
+}
+.mg-seta-baixo {
+  grid-column: 2;
+  grid-row: 2;
+}
+.mg-seta-direita {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* ==========================================================
+   2. QUEBRA-CABEÇA (montar a lembrança)
+   ========================================================== */
+
+.mg-pecas {
+  --colunas: 2;
+
+  display: grid;
+  grid-template-columns: repeat(var(--colunas), 1fr);
+  gap: 5px;
+  width: min(100%, 230px);
+}
+
+.mg-peca {
+  appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--papel);
+  border: 2px dashed rgba(121, 92, 84, 0.55);
+  border-radius: 7px 10px 8px 11px;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.mg-peca svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mg-peca.selecionada {
+  border: 2.5px solid var(--vinho);
+  transform: scale(0.94) rotate(-1.5deg);
+}
+
+/* Peça que já está no lugar certo */
+.mg-peca.certa {
+  border: 2px solid var(--salvia);
+}
+
+.moldura-quebra {
+  fill: none;
+  stroke: var(--marrom);
+  stroke-width: 2.5;
+}
+
+.mg.venceu .mg-peca {
+  pointer-events: none;
+  border-color: var(--salvia);
+}
+
+/* ==========================================================
+   3. FECHADURA
+   ========================================================== */
+
+.mg-pistas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.mg-pistas li {
+  margin-bottom: 0.2rem;
+}
+
+.mg-pistas li::before {
+  content: "✎ ";
+  color: var(--vinho);
+}
+
+.mg-cadeado {
+  width: 74px;
+  height: 80px;
+}
+
+/* A argola sobe quando destranca */
+.mg-cadeado .grilhao {
+  transform-origin: 38px 58px;
+  transition: transform 0.5s ease;
+}
+
+.mg.aberto .grilhao {
+  transform: translateY(-12px) rotate(-22deg);
+}
+
+.mg-discos {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.mg-disco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.mg-seta {
+  appearance: none;
+  width: 44px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--marrom);
+  background: var(--papel);
+  border: 2px solid var(--marrom);
+  border-radius: 9px 14px 10px 13px;
+}
+
+.mg-seta:active {
+  transform: translateY(2px);
+}
+
+.mg-digito {
+  width: 44px;
+  padding: 0.1rem 0;
+  font-family: var(--fonte-titulo);
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--vinho);
+  background: rgba(255, 255, 255, 0.35);
+  border-bottom: 2.5px solid var(--marrom);
+}
+
+.mg-discos.errou {
+  animation: tremer 0.4s ease;
+}
+
+@keyframes tremer {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.mg.aberto .mg-seta,
+.mg.aberto .mg-abrir {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* ---------- Menos movimento ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-jogador,
+  .mg-peca,
+  .mg-cadeado .grilhao {
+    transition: none;
+  }
+
+  .mg-discos.errou {
+    animation: none;
+  }
+}
+
+/* ==========================================================
+   3. JARDIM (regar os brotinhos)
+   ========================================================== */
+
+.mg-jardim {
+  --colunas: 3;
+
+  display: grid;
+  grid-template-columns: repeat(var(--colunas), 1fr);
+  gap: 6px;
+  width: min(100%, 270px);
+
+  touch-action: none; /* segurar o dedo não rola a página */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.mg-vaso {
+  appearance: none;
+  position: relative;
+  padding: 2px 0 8px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.22);
+  border: 2px dashed rgba(121, 92, 84, 0.5);
+  border-radius: 9px 12px 10px 13px;
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease;
+}
+
+.mg-vaso.regando {
+  border-color: var(--salvia);
+  border-style: solid;
+}
+
+.planta-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* "Pulinho" quando a planta muda de estágio */
+.mg-vaso.cresceu {
+  animation: vaso-cresceu 0.45s ease;
+}
+
+@keyframes vaso-cresceu {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- O regador e as gotas ---------- */
+
+.regador-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.regador {
+  opacity: 0;
+  transform-origin: 85px 21px;
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s ease;
+}
+
+.regador-corpo {
+  fill: var(--papel);
+  stroke: var(--marrom);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mg-vaso.regando .regador {
+  opacity: 1;
+  transform: rotate(-22deg);
+}
+
+.gota {
+  fill: none;
+  stroke: var(--salvia);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+.mg-vaso.regando .gota {
+  animation: gota-cair 0.7s linear infinite;
+}
+
+.mg-vaso.regando .gota-2 {
+  animation-delay: 0.23s;
+}
+.mg-vaso.regando .gota-3 {
+  animation-delay: 0.46s;
+}
+
+@keyframes gota-cair {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+}
+
+/* ---------- Barrinha de progresso do estágio ---------- */
+
+.mg-vaso-barra {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 4px;
+  height: 6px;
+  overflow: hidden;
+  border: 1.5px solid var(--marrom);
+  border-radius: 4px;
+}
+
+.mg-vaso-barra i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--salvia);
+}
+
+.mg.venceu .mg-vaso {
+  border-style: solid;
+  border-color: var(--salvia);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-vaso.cresceu,
+  .mg-vaso.regando .gota {
+    animation: none;
+  }
+
+  .mg-vaso.regando .gota {
+    opacity: 1;
+  }
+}

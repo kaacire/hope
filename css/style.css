@@ -1,0 +1,401 @@
+/* ==========================================================
+   style.css — paleta, fontes, papel e estilos globais
+   ----------------------------------------------------------
+   Para mudar o visual do site inteiro, comece pelas
+   variáveis logo abaixo.
+   ========================================================== */
+
+:root {
+  /* ---------- Paleta ---------- */
+  --papel: #f5ebdd; /* fundo principal (nunca branco puro) */
+  --papel-escuro: #ebddc9; /* verso das folhas, miolo do caminho  */
+  --rosa: #c9afa0; /* flores e detalhes afetivos          */
+  --marrom: #795c54; /* traço de lápis, bordas              */
+  --salvia: #75816a; /* folhagens e caminho                 */
+  --vinho: #843f4c; /* destaques e minijogos               */
+  --tinta: #4a362f; /* cor do texto corrido (leitura)      */
+
+  /* ---------- Fontes ---------- */
+  --fonte-titulo: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --fonte-texto: "Lora", Georgia, "Times New Roman", serif;
+
+  /* ---------- Traço dos desenhos ---------- */
+  --traco: 2.5px;
+  --filtro-rabisco: url(#rabisco);
+
+  /* ---------- Tamanho da folha do alento ---------- */
+  --folha-largura: min(86vw, 420px);
+  --folha-altura: min(64vh, 580px);
+
+  /* ---------- Virada de página (config.js sobrescreve) ---------- */
+  --virada-ms: 800ms;
+  --virada-perspectiva: 1400px;
+  --virada-easing: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---------- Granulado sutil do papel ---------- */
+  --granulado: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .47  0 0 0 0 .36  0 0 0 0 .33  0 0 0 .09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Celulares com barra de endereço que muda de tamanho */
+@supports (height: 1dvh) {
+  :root {
+    --folha-altura: min(64dvh, 580px);
+  }
+}
+
+/* Se config.estilo.filtroRabisco for false, main.js liga esta classe */
+.sem-rabisco {
+  --filtro-rabisco: none;
+}
+
+/* ==========================================================
+   BASE
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--papel) var(--granulado);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.invisivel {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================
+   TELAS (só uma fica visível por vez)
+   ========================================================== */
+
+.tela {
+  position: fixed;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.tela.ativa {
+  display: block;
+  animation: tela-aparecer 0.5s ease both;
+}
+
+@keyframes tela-aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================
+   DESENHOS (doodles)
+   Classes usadas dentro dos SVGs de js/doodles.js:
+     .tr      = contorno de lápis
+     .rosa / .salvia / .vinho / .papel = preenchimentos
+   Exemplo: class="tr rosa" = contorno + preenchimento rosa
+   ========================================================== */
+
+.rabisco-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: var(--filtro-rabisco);
+}
+
+.tr {
+  fill: none;
+  stroke: var(--marrom);
+  stroke-width: var(--traco);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.tr.rosa {
+  fill: var(--rosa);
+  fill-opacity: 0.55;
+}
+.tr.salvia {
+  fill: var(--salvia);
+  fill-opacity: 0.5;
+}
+.tr.vinho {
+  fill: var(--vinho);
+  fill-opacity: 0.75;
+}
+.tr.papel {
+  fill: var(--papel);
+  fill-opacity: 1;
+}
+.tr.terra {
+  fill: var(--marrom);
+  fill-opacity: 0.4;
+}
+.tr.branca {
+  fill: #fffdf7;
+  fill-opacity: 1;
+}
+.tr.amarelo {
+  fill: #e3b95f;
+  fill-opacity: 0.95;
+}
+
+/* ==========================================================
+   BOTÃO COM CARA DE ANOTAÇÃO
+   ========================================================== */
+
+.botao-nota {
+  appearance: none;
+  cursor: pointer;
+  padding: 0.45rem 1.4rem 0.5rem;
+
+  font-family: var(--fonte-titulo);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--vinho);
+
+  background: var(--papel);
+  border: var(--traco) solid var(--marrom);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: 3px 4px 0 rgba(121, 92, 84, 0.35);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.botao-nota:hover {
+  transform: rotate(-1deg);
+}
+
+.botao-nota:active {
+  transform: translate(2px, 3px);
+  box-shadow: 1px 1px 0 rgba(121, 92, 84, 0.35);
+}
+
+.botao-nota:focus-visible,
+.botao-voltar:focus-visible,
+.porta:focus-visible {
+  outline: 2.5px dashed var(--vinho);
+  outline-offset: 4px;
+}
+
+.botao-discreto {
+  font-size: 1.3rem;
+  color: var(--marrom);
+  box-shadow: none;
+}
+
+/* ==========================================================
+   CONTEÚDO DA FOLHA (texto, título, ilustração)
+   ========================================================== */
+
+.folha {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.3rem 1.2rem 1.9rem;
+  overflow-y: auto;
+}
+
+.folha-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  min-height: 1.6rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  color: var(--salvia);
+}
+
+.folha-nota {
+  color: var(--vinho);
+  transform: rotate(-3deg);
+  font-size: 1.2rem;
+}
+
+.folha-titulo {
+  margin: 0.2rem 0 0.4rem;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--marrom);
+}
+
+.folha-ilustracao {
+  flex: 0 0 auto;
+  height: clamp(90px, 20vh, 170px);
+  margin: 0.2rem 0 0.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.folha-ilustracao .rabisco-svg,
+.folha-ilustracao img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.folha-texto {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--tinta);
+}
+
+.folha-fim {
+  text-align: center;
+}
+
+.folha-fim .folha-texto {
+  text-align: left;
+}
+
+/* ==========================================================
+   FUNDO ILUSTRADO — O CAMINHO DESENHADO
+   (o SVG é gerado por js/background.js)
+   ========================================================== */
+
+.fundo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.fundo-camada {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity calc(var(--virada-ms) * 0.5) ease;
+}
+
+.fundo-camada.visivel {
+  opacity: 1;
+}
+
+.fundo-camada.sem-transicao {
+  transition: none;
+}
+
+.cena {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Imagem de fundo opcional (config.conteudos[].fundo) */
+.cena-imagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* O caminho: uma borda marrom com um miolo de papel por cima */
+.trilha-borda,
+.trilha-miolo {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-dasharray: 1; /* pathLength="1": desenha de 0 a 100% */
+  stroke-dashoffset: 1;
+}
+
+.trilha-borda {
+  stroke: var(--marrom);
+  stroke-width: 46;
+}
+
+.trilha-miolo {
+  stroke: var(--papel-escuro);
+  stroke-width: 38;
+}
+
+.trilha-centro {
+  fill: none;
+  stroke: var(--salvia);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 3 12;
+  opacity: 0;
+}
+
+/* Quando a camada fica visível, o caminho se "desenha" sozinho */
+.visivel .trilha-borda,
+.visivel .trilha-miolo {
+  animation: trilha-desenhar calc(var(--virada-ms) * 1.8) ease-out forwards;
+}
+
+.visivel .trilha-centro {
+  animation: trilha-aparecer 0.7s ease calc(var(--virada-ms) * 1.2) forwards;
+}
+
+@keyframes trilha-desenhar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes trilha-aparecer {
+  to {
+    opacity: 0.8;
+  }
+}
+
+.deco-grupo {
+  opacity: 0.92;
+}
+
+/* ==========================================================
+   MENOS MOVIMENTO (acessibilidade)
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tela.ativa {
+    animation: none;
+  }
+
+  .fundo-camada {
+    transition: none;
+  }
+
+  .trilha-borda,
+  .trilha-miolo {
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+
+  .trilha-centro {
+    opacity: 0.8;
+    animation: none !important;
+  }
+}

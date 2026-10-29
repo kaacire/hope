@@ -1,0 +1,214 @@
+/* ==========================================================
+   doors.css — a tela das 12 portas
+   ========================================================== */
+
+.tela-portas {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--papel) var(--granulado);
+}
+
+
+/* ---------- Cabeçalho ---------- */
+
+.portas-cabecalho {
+  padding: 2.4rem 1rem .6rem;
+  text-align: center;
+}
+
+.portas-titulo {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.8rem, 12vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--vinho);
+  transform: rotate(-1.5deg);
+}
+
+.portas-subtitulo {
+  margin: .5rem 0 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--salvia);
+}
+
+
+/* ---------- Aviso "continuar de onde parou" ---------- */
+
+.aviso-retomar {
+  max-width: 340px;
+  margin: 1.2rem auto 0;
+  padding: .9rem 1rem 1rem;
+  text-align: center;
+  border: var(--traco) dashed var(--rosa);
+  border-radius: 12px 8px 14px 9px;
+  background: rgba(255, 255, 255, .25);
+}
+
+.aviso-retomar-texto {
+  margin: 0 0 .7rem;
+  font-size: .95rem;
+  line-height: 1.4;
+}
+
+.aviso-retomar-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+}
+
+
+/* ---------- A coluna de portas ---------- */
+
+.coluna-portas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.6rem;
+  padding: 2rem 1rem calc(5rem + env(safe-area-inset-bottom));
+}
+
+
+/* ---------- Uma porta ---------- */
+
+.porta {
+  /* Pequenas imperfeições; main.js sorteia valores diferentes por porta */
+  --inclinacao:   0deg;
+  --deslocamento: 0px;
+  --cor-folha:    #D3BBAD;
+
+  appearance: none;
+  position: relative;
+  width: min(58vw, 210px);
+  aspect-ratio: 3 / 4.3;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  transform: translateX(var(--deslocamento)) rotate(var(--inclinacao));
+  transition: transform .25s ease;
+}
+
+.porta:active {
+  transform: translateX(var(--deslocamento)) rotate(var(--inclinacao)) scale(.97);
+}
+
+/* Cores alternadas, todas da paleta */
+.porta:nth-child(3n + 2) { --cor-folha: #B9C0AE; }
+.porta:nth-child(3n + 3) { --cor-folha: #DCC5B8; }
+
+
+/* Moldura (batente) em arco */
+.porta-moldura {
+  position: absolute;
+  inset: 0;
+  perspective: 800px;
+
+  border: var(--traco) solid var(--marrom);
+  border-radius: 48% 52% 4px 4px / 30% 28% 4px 4px;
+  box-shadow: 4px 5px 0 rgba(121, 92, 84, .25);
+}
+
+
+/* O que existe atrás da porta */
+.porta-interior {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 70%, #FFF7E8 0%, var(--papel-escuro) 100%);
+}
+
+.porta-interior .rabisco-svg {
+  width: 72%;
+  height: auto;
+  opacity: .9;
+}
+
+
+/* A folha da porta, que abre girando na lateral esquerda */
+.porta-folha {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--cor-folha);
+
+  transform-origin: left center;
+  transition: transform .7s cubic-bezier(.5, 0, .3, 1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.porta.aberta .porta-folha {
+  transform: rotateY(-105deg);
+}
+
+/* Dois painéis desenhados na folha */
+.porta-folha::before,
+.porta-folha::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  border: 2px solid rgba(121, 92, 84, .55);
+  border-radius: 6px 12px 8px 14px / 12px 6px 14px 8px;
+}
+
+.porta-folha::before {
+  top: 29%;
+  height: 26%;
+}
+
+.porta-folha::after {
+  top: 61%;
+  height: 26%;
+}
+
+.porta-numero {
+  position: absolute;
+  top: 7%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--fonte-titulo);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--vinho);
+}
+
+/* O símbolo pequeno de cada porta (o mesmo desenho do conteúdo) */
+.porta-simbolo {
+  position: absolute;
+  top: 30.5%;
+  left: 50%;
+  width: 34%;
+  transform: translateX(-50%);
+}
+
+.porta-macaneta {
+  position: absolute;
+  right: 9%;
+  top: 56%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--vinho);
+  border: 2px solid var(--marrom);
+}
+
+
+/* ---------- Menos movimento ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .porta,
+  .porta-folha {
+    transition: none;
+  }
+}
