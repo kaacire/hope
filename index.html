@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F5EBDD">
-  <title>Наша надежда</title>
+  <title>Наша отрада</title>
 
   <!-- Fontes (Google Fonts).
        Para trocar, altere o link abaixo E as variáveis --fonte-*
@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="css/doors.css">
   <link rel="stylesheet" href="css/page-turn.css">
   <link rel="stylesheet" href="css/minigames.css">
+  <link rel="stylesheet" href="css/ceu.css">
 </head>
 
 <body>
@@ -66,15 +67,17 @@
   <!-- ======================================================
        TELA B — O alento ABERTO
        ====================================================== -->
-  <section id="tela-diario" class="tela tela-diario" aria-label="Наша надежда">
+  <section id="tela-diario" class="tela tela-diario" aria-label="Отрада">
+
+    <!-- O "mundo" de papel: fundo + folha. Na última seção ele
+         desliza para cima enquanto o céu de espaço toma a tela. -->
+    <div id="mundo" class="mundo">
 
     <!-- Camada 1: fundo ilustrado (o caminho desenhado) -->
     <div id="fundo" class="fundo" aria-hidden="true">
       <div class="fundo-camada"></div>
       <div class="fundo-camada"></div>
     </div>
-
-    <button id="btn-portas" class="botao-voltar" type="button"></button>
 
     <!-- Camada 2: a folha do alento (é ela que vira em 3D) -->
     <div class="livro">
@@ -94,6 +97,17 @@
       </div>
     </div>
 
+    </div><!-- /mundo -->
+
+    <!-- Última seção: o céu de espaço (js/ceu.js) -->
+    <div id="ceu" class="ceu" role="img"
+         aria-label="Небо, полное звёзд и созвездий. В центре — «С днём рождения!», а ниже звёзды образуют торт со свечой.">
+      <canvas id="ceu-canvas" class="ceu-canvas" aria-hidden="true"></canvas>
+      <h2 id="ceu-titulo" class="ceu-titulo"></h2>
+    </div>
+
+    <button id="btn-portas" class="botao-voltar" type="button"></button>
+
     <!-- Camada 4: controle de avanço -->
     <button id="btn-continuar" class="botao-nota botao-continuar" type="button"></button>
 
@@ -111,6 +125,7 @@
   <script src="js/background.js"></script>
   <script src="js/page-turn.js"></script>
   <script src="js/music.js"></script>
+  <script src="js/ceu.js"></script>
   <script src="js/minigames/maze.js"></script>
   <script src="js/minigames/puzzle.js"></script>
   <script src="js/minigames/garden.js"></script>

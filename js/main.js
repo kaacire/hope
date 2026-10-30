@@ -23,6 +23,7 @@ Diario.app = (function () {
   const sequencia = Diario.sequencia;
   const fundo = Diario.fundo;
   const virada = Diario.virada;
+  const ceu = Diario.ceu;
 
   const textos = config.textos;
 
@@ -48,6 +49,7 @@ Diario.app = (function () {
 
     fundo.iniciar(el.fundo);
     virada.iniciar();
+    ceu.iniciar();
 
     ligarEventos();
     atualizarAvisoRetomar();
@@ -260,6 +262,8 @@ Diario.app = (function () {
     passos = sequencia.montarPassos(estado.ordem);
     minijogoVencido = false;
 
+    ceu.sair(); // começa sempre no tema de papel
+
     trocarTela("diario");
     fundo.reiniciar();
     virada.limpar();
@@ -271,6 +275,7 @@ Diario.app = (function () {
     if (ocupado || virada.estaBloqueado()) return;
 
     limparMinijogo();
+    ceu.sair();
 
     if (concluido) armazenamento.limpar();
 
@@ -301,10 +306,37 @@ Diario.app = (function () {
     return estado ? passos[estado.passoAtual] : null;
   }
 
+  /* Última seção: o mundo de papel sobe e o céu toma a tela */
+  async function irParaCeu(indice, comVirada) {
+    const minijogoAnterior = destruirMinijogo;
+
+    el.btnContinuar.classList.add("invisivel");
+
+    await ceu.entrar(!comVirada);
+
+    /* Pode ter saído do alento durante a subida */
+    if (!estado || passos[indice] === undefined) return;
+
+    if (minijogoAnterior) minijogoAnterior();
+
+    destruirMinijogo = null;
+    minijogoVencido = false;
+    estado.passoAtual = indice;
+
+    armazenamento.limpar(); // chegou ao fim: nada a retomar
+
+    atualizarBotao();
+  }
+
   async function irParaPasso(indice, comVirada) {
     const passo = passos[indice];
 
     if (!passo) return;
+
+    if (passo.tipo === "ceu") {
+      await irParaCeu(indice, comVirada);
+      return;
+    }
 
     let handleNovo = null;
 
@@ -334,8 +366,8 @@ Diario.app = (function () {
     minijogoVencido = false;
     estado.passoAtual = indice;
 
-    if (passo.tipo === "fim") {
-      armazenamento.limpar();
+    if (indice >= passos.length - 1) {
+      armazenamento.limpar(); // última página: nada a retomar
     } else {
       salvarProgresso();
     }
@@ -349,7 +381,7 @@ Diario.app = (function () {
 
     const passo = passoAtual();
 
-    if (passo.tipo === "fim") return;
+    if (ehUltimoPasso()) return;
     if (passo.tipo === "minijogo" && !minijogoVencido) return; // não dá para pular
 
     ocupado = true;
@@ -359,6 +391,10 @@ Diario.app = (function () {
     } finally {
       ocupado = false;
     }
+  }
+
+  function ehUltimoPasso() {
+    return !estado || estado.passoAtual >= passos.length - 1;
   }
 
   function salvarProgresso() {
@@ -408,8 +444,9 @@ Diario.app = (function () {
     }
 
     botao.classList.toggle("invisivel", escondido);
-    botao.textContent =
-      passo.tipo === "fim" ? textos.botaoVoltar : textos.botaoContinuar;
+    botao.textContent = ehUltimoPasso()
+      ? textos.botaoVoltar
+      : textos.botaoContinuar;
   }
 
   function preCarregarProximo() {
@@ -527,7 +564,7 @@ Diario.app = (function () {
       raiz.innerHTML =
         '<p class="mg-instrucao">Мини-игра «' +
         passo.jogo +
-        '» не найдена. Проверь config.sequencia.minijogos.</p>';
+        '» не найдена. Проверьте config.sequencia.minijogos.</p>';
 
       setTimeout(function () {
         aoVencerMinijogo(passo);
@@ -581,7 +618,7 @@ Diario.app = (function () {
 
       if (!passo) return;
 
-      if (passo.tipo === "fim") {
+      if (ehUltimoPasso()) {
         voltarParaPortas(true);
       } else {
         avancar();

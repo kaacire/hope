@@ -5,10 +5,11 @@
 
      { tipo: "conteudo", conteudoId, posicao }   uma página de texto
      { tipo: "minijogo", jogo, numero }          um desafio
-     { tipo: "fim" }                             tela final
+     { tipo: "fim" }                             página final
+     { tipo: "ceu" }                             o céu (última seção)
 
    Com 12 conteúdos e minijogoACada = 3, fica assim:
-     C C C [M1] C C C [M2] C C C [M3] C C C FIM
+     C C C [M1] C C C [M2] C C C [M3] C C C FIM CÉU
 
    Os minijogos NÃO entram no embaralhamento: ficam em posições
    fixas, então nunca aparecem antes da hora.
@@ -62,6 +63,11 @@ Diario.sequencia = (function () {
     });
 
     passos.push({ tipo: "fim" });
+
+    /* Última seção: a subida para o céu (config.ceu.ativo) */
+    const ceu = Diario.config.ceu;
+
+    if (!ceu || ceu.ativo !== false) passos.push({ tipo: "ceu" });
 
     return passos;
   }

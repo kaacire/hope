@@ -1,0 +1,216 @@
+/* ==========================================================
+   ceu.css — a última seção: o céu de espaço
+   ----------------------------------------------------------
+   Estrutura (dentro de #tela-diario):
+
+     .mundo   o alento inteiro (papel, caminho e folha). Quando
+              a tela ganha a classe .tema-espaco, ele desliza
+              para CIMA e sai da tela.
+     .ceu     o céu noturno. Sobe de baixo, no mesmo ritmo,
+              ocupando o lugar do mundo de papel.
+
+   Classes que js/ceu.js coloca em #tela-diario:
+     .tema-espaco     liga o tema de espaço
+     .ceu-pronto      mostra o título "Feliz aniversário!"
+     .ceu-instantaneo desliga as transições (ao entrar/sair)
+
+   A duração da subida vem de config.js (ceu.subidaMs) pela
+   variável --ceu-subida-ms.
+   ========================================================== */
+
+:root {
+  --ceu-subida-ms: 2200ms;
+  --noite: #070b24;
+  --luz-estrela: #fff3d6;
+}
+
+/* ---------- O mundo de papel (agora dentro de um wrapper) ---------- */
+
+.mundo {
+  position: absolute;
+  inset: 0;
+  background: var(--papel) var(--granulado);
+}
+
+.tela-diario.tema-espaco {
+  background: var(--noite);
+}
+
+.tela-diario.tema-espaco .mundo {
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition:
+    transform var(--ceu-subida-ms) var(--virada-easing),
+    visibility 0s linear var(--ceu-subida-ms);
+}
+
+/* ---------- O céu ---------- */
+
+.ceu {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(100%);
+
+  background:
+    radial-gradient(ellipse 120% 70% at 50% 108%, #2d2a6e 0%, rgba(45, 42, 110, 0) 70%),
+    linear-gradient(180deg, #04061a 0%, #0a1033 48%, #151a4f 100%);
+}
+
+/* Névoas suaves nas cores do alento (vinho e rosa) e um azul */
+.ceu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(132, 63, 76, 0.3), transparent 42%),
+    radial-gradient(circle at 84% 62%, rgba(96, 86, 190, 0.28), transparent 46%),
+    radial-gradient(circle at 60% 12%, rgba(201, 175, 160, 0.1), transparent 38%);
+}
+
+.tela-diario.tema-espaco .ceu {
+  visibility: visible;
+  transform: none;
+  transition: transform var(--ceu-subida-ms) var(--virada-easing);
+}
+
+.ceu-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ---------- Título ---------- */
+
+.ceu-titulo {
+  position: absolute;
+  left: 50%;
+  top: var(--ceu-titulo-y, 30%);
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 92vw;
+  margin: 0;
+  text-align: center;
+
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.8rem, 11vw, 5.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff6e0;
+  text-shadow:
+    0 0 14px rgba(255, 222, 160, 0.55),
+    0 0 40px rgba(255, 200, 120, 0.3);
+}
+
+.ceu-palavra {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ceu-letra {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em) scale(0.9);
+  filter: blur(6px);
+}
+
+.tela-diario.ceu-pronto .ceu-letra {
+  animation: ceu-letra 0.95s cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 75ms);
+}
+
+@keyframes ceu-letra {
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+/* Depois de aparecer, o título respira devagar */
+.tela-diario.ceu-pronto .ceu-titulo {
+  animation: ceu-respirar 5s ease-in-out 2s infinite;
+}
+
+@keyframes ceu-respirar {
+  0%,
+  100% {
+    text-shadow:
+      0 0 14px rgba(255, 222, 160, 0.5),
+      0 0 40px rgba(255, 200, 120, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 228, 175, 0.8),
+      0 0 56px rgba(255, 200, 120, 0.42);
+  }
+}
+
+/* ---------- Botões ficam claros no tema de espaço ---------- */
+
+.tela-diario .botao-continuar {
+  transition:
+    opacity 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.8s ease,
+    color 0.8s ease,
+    background-color 0.8s ease,
+    border-color 0.8s ease;
+}
+
+.tela-diario .botao-voltar {
+  transition: color 0.8s ease;
+}
+
+.tela-diario.tema-espaco .botao-nota {
+  color: #ffe9b8;
+  background-color: rgba(12, 16, 52, 0.55);
+  border-color: rgba(255, 233, 184, 0.7);
+  box-shadow: 0 0 16px rgba(255, 220, 150, 0.28);
+}
+
+.tela-diario.tema-espaco .botao-nota:active {
+  box-shadow: 0 0 8px rgba(255, 220, 150, 0.2);
+}
+
+.tela-diario.tema-espaco .botao-voltar {
+  color: rgba(255, 246, 224, 0.82);
+}
+
+.tela-diario.tema-espaco .botao-nota:focus-visible,
+.tela-diario.tema-espaco .botao-voltar:focus-visible {
+  outline-color: #ffe9b8;
+}
+
+/* ---------- Sem transição (entrar/sair instantâneo) ---------- */
+
+.tela-diario.ceu-instantaneo .mundo,
+.tela-diario.ceu-instantaneo .ceu {
+  transition: none !important;
+}
+
+/* ---------- Menos movimento (acessibilidade) ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .tela-diario.tema-espaco .mundo,
+  .tela-diario.tema-espaco .ceu {
+    transition: none;
+  }
+
+  .ceu-letra,
+  .tela-diario.ceu-pronto .ceu-letra {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+
+  .tela-diario.ceu-pronto .ceu-titulo {
+    animation: none;
+  }
+}

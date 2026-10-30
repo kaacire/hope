@@ -236,7 +236,17 @@ button {
   color: var(--salvia);
 }
 
+.folha-contador {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.folha-topo {
+  gap: 0.8rem;
+}
+
 .folha-nota {
+  text-align: right;
   color: var(--vinho);
   transform: rotate(-3deg);
   font-size: 1.2rem;

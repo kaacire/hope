@@ -112,7 +112,7 @@ Diario.minijogos.quebraCabeca = (function () {
       return ''
         + '<button type="button" class="' + classes.join(" ") + '" '
         +         'data-posicao="' + posicao + '" '
-        +         'aria-label="Деталь ' + (posicao + 1) + '">'
+        +         'aria-label="Фрагмент ' + (posicao + 1) + '">'
         +   '<svg viewBox="' + (col * larguraPeca) + " " + (lin * alturaPeca) + " "
         +                      larguraPeca + " " + alturaPeca + '" '
         +        'class="rabisco-svg" aria-hidden="true">'
